@@ -10,29 +10,31 @@ int main()
     {
         int n;
         cin >> n;
-        int arr[n];
+        vector<int>arr(n);
         for (int i = 0; i < n; i++)
         {
             cin >> arr[i];
         }
-        sort(arr, arr + n);
-        if (n == 1)
-        {
-            if(arr[0]==1||arr[0]==0){
-                cout<<arr[0]+1<<"\n";
-            }
-            else{
-                cout << arr[0] << "\n";
+        sort(arr.begin(),arr.end());
+        int sum=0;
+        bool temp=false;
+        if(arr.size()%2==0){
+            for(int i=0;i<n-1;i+=2){
+                sum+=arr[i]+arr[i+1];
             }
         }
-        else
-        {
-            int temp = arr[1] + 1;
-            for (int i = 2; i < n; i++)
-            {
-                temp = temp + arr[i];
+        else{
+            for(int i=0;i<n-2;i+=2){
+                sum+=arr[i]+arr[i+1];
+                temp=true;
             }
-            cout << temp << "\n";
+        }
+        if(!temp){
+            sum=sum+arr[n-1];
+            cout<<sum<<"\n";
+        }
+        else{
+            cout<<sum<<"\n";
         }
     }
 }
